@@ -58,10 +58,9 @@ return folders.map((folder, index) =>(
     <div className={folder.isComplete ?'folder-row complete' : 'folder-row'} key={index}>
 
         <div key={folder.id} onClick ={()=> completeFolder(folder.id)}>
-            {folder.text}
-            {folder.isOpen? <div><List folder= {folder}/></div>: <div>CERRADA</div>}
+            {folder.isOpen? <div><List folder= {folder}/></div>: <div></div>}
             
-            { <h3 key={folder.id} onClick ={()=> viewFolder(folder.id)}>View Tasks</h3> }
+            { <h3 key={folder.id} onClick ={()=> viewFolder(folder.id)}>{folder.text}</h3> }
             { <List folderId ={folder.id} onSubmit={addToFolder}/> }
         </div>
         <div className="icons">

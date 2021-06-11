@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
+
 import NavBar from './components/NavBar';
 import List from './components/List';
 import FolderContainer from './components/Folders/FolderContainer';
@@ -25,7 +25,7 @@ function App() {
       <NavBar/>
 
       <Switch>
-          <Route exact path='/' render ={() => <Home greeting ="Bienvenidos"></Home>}/>
+       
           <Route path='/folder' render ={()=><FolderContainer/>}/>
           <Route path='/tasks' render ={()=><List/>}/>
         </Switch>
