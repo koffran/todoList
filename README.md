@@ -6,6 +6,10 @@ Spring Data;
 PostgreSQL database;
 Hibernate;
 
+To run the DB use:
+### `psql -h localhost -9 5432 -U postgres`
+Password: kofran123
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
