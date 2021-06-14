@@ -16,10 +16,15 @@ const addTask = task =>{
         let updatedFolder = folders.map(folder=>{
             if(folder.id === props.folderId){
                 folder.tasks.push(task) 
-                console.log(folder)
+                console.log(folder) 
             }
         })
         setFolders(folders, ...updatedFolder);
+        let savingUpdate = folders.map(folder=>{
+            if(folder.id === props.folderId){
+                saveUpdate(folder,task)
+            }
+        })
     }
     else
     {
@@ -28,6 +33,27 @@ const addTask = task =>{
 
     } 
 }
+
+
+const saveUpdate = async(folder,task) =>{
+    console.log(`TAREA A CARGAR: ${task.text}`);
+    console.log(`ID:;${folder.id}` )
+    let response = await fetch(`http://localhost:8080/save/${folder.id}`, {
+            method: 'POST', headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },          
+            body: JSON.stringify({
+                id: folder.id,
+                name: folder.name,
+                tasks: `${task.text}`,
+                isOpen: false
+            }  
+            )
+        })
+    
+}
+
 
 const completeTask = id=>{
     let upadtedTasks = tasks.map(task=>{
@@ -53,7 +79,7 @@ const removeTask = id =>{
         <div>
              {props.folderId ? 
            (<>
-           <TodoForm folderId= {props.folderId} onSubmit={addTask/*props.onSubmit*/}/> 
+           <TodoForm folderId= {props.folderId} onSubmit={addTask}/> 
            </>)
             : props.folder?
             (<>
@@ -77,4 +103,3 @@ const removeTask = id =>{
 }
 
 export default List
-//<TodoForm onSubmit={addTask}/>

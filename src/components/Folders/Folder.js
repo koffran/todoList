@@ -6,7 +6,7 @@ import {RiCloseCircleLine} from 'react-icons/ri'
 import {TiEdit} from 'react-icons/ti'
 import List from '../List';
 
-function Folder({/*folders, setFolders,*/ completeFolder, removeFolder,updateFolder,addTaskToFolder, tasks}) {
+function Folder({ completeFolder, removeFolder,updateFolder,addTaskToFolder, tasks}) {
     const {innerFolders, setInnerFolders} =useContext(folderInnerContext);
     const {folders, setFolders} =useContext(folderContext);
    const [edit, setEdit] = useState({
@@ -39,20 +39,21 @@ const viewFolder = (id)=>{
 
 }
 
-const addToFolder =(id, task) =>{
-    console.log("ADDTOFOLDER")
+const addToFolder = (id, task) =>{
     console.log(id, task)
     let upadtedFolders = folders.map(folder=>{
         if(folder.id === id){
-            folder.tasks.push(task)
+            folder.tasks.push(task)               
         }
-        return folder //esto no va creo
+        return folder
     })
+
+    
     setFolders(upadtedFolders)
     console.log(folders)
-    
-
 }
+
+
 
 return folders.map((folder, index) =>(
     <div className={folder.isComplete ?'folder-row complete' : 'folder-row'} key={index}>
@@ -60,7 +61,7 @@ return folders.map((folder, index) =>(
         <div key={folder.id} onClick ={()=> completeFolder(folder.id)}>
             {folder.isOpen? <div><List folder= {folder}/></div>: <div></div>}
             
-            { <h3 key={folder.id} onClick ={()=> viewFolder(folder.id)}>{folder.text}</h3> }
+            { <h3 key={folder.id} onClick ={()=> viewFolder(folder.id)}>{folder.name}</h3> }
             { <List folderId ={folder.id} onSubmit={addToFolder}/> }
         </div>
         <div className="icons">

@@ -30,7 +30,7 @@ return <div>
             <div key={todo.id} onClick ={()=> completeTodo(todo.id)}>
                 {todo.text}
             </div>
-            <div >
+            <div class='btnsToDo'>
                 <p
                 onClick={()=> removeTodo(todo.id)}
                 className='delete'
